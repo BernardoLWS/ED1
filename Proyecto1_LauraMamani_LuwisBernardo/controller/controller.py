@@ -16,14 +16,25 @@ class AgendaController:
         """Obtiene datos de la vista y los agrega al modelo."""
         nombre = self.vista.caja_nombre.get().strip()
         telefono = self.vista.caja_telefono.get().strip()
-        correo = self.vista.caja_gmail.get().strip()
+        correo = self.vista.caja_correo.get().strip()
+        abecedario = ("abcdefghijklmnñopqrstuvwxyz")
+        numeros = ("0123456789")
+    
+        nombre_valido = len(nombre)>0 and all(c in abecedario or c==" " for c in nombre.lower())
+        telefono_valido = len(telefono)>0 and all(c in numeros for c in telefono)
+        correo_valido = "@" in correo and ".com" in correo
 
-        if nombre and telefono and correo:
+        if nombre_valido and telefono_valido and correo_valido:
             self.modelo.agregar_contacto(nombre, telefono, correo)
             self.vista.mostrar_mensaje("Contacto agregado correctamente.")
             self.actualizar_lista()
+            """Limpiar despues e agregar contacto"""
+            self.vista.caja_nombre.delete(0,"end")
+            self.vista.caja_telefono.delete(0,"end")
+            self.vista.caja_correo.delete(0,"end")
         else:
-            self.vista.mostrar_mensaje("Por favor, completa todos los campos.")
+            self.vista.mostrar_mensaje("Por favor, completa todos los campos correctamente.")
+
 
     def eliminar_contacto(self):
         """Elimina el contacto seleccionado en la vista."""

@@ -1,4 +1,3 @@
-#from datos import contactos
 import json
 """Nodo que representa un contacto en la lista enlazada."""
 class NodoContacto():
@@ -93,4 +92,4 @@ class AgendaModel():
             for c in contactos:
                 self.agregar_contacto(c["nombre"], c["telefono"], c["correo"])
         except FileNotFoundError:
-            print("⚠️ No existe el archivo, se inicia agenda vacía.")
+            print(" No existe el archivo, se inicia agenda vacía.")

@@ -25,7 +25,7 @@ class AgendaView:
         self.caja_buscar = tk.Entry(self.ventana, font=("Arial", 12), fg="#000000", bg="#F8FBFD")
         self.caja_nombre = tk.Entry(self.ventana, font=("Arial", 12), fg="#000000", bg="#F8FBFD")
         self.caja_telefono = tk.Entry(self.ventana, font=("Arial", 12), fg="#000000", bg="#F8FBFD")
-        self.caja_gmail = tk.Entry(self.ventana, font=("Arial", 12), fg="#000000", bg="#F8FBFD")
+        self.caja_correo = tk.Entry(self.ventana, font=("Arial", 12), fg="#000000", bg="#F8FBFD")
 
         # Listbox para contactos
         self.caja_resultado = tk.Listbox(
@@ -38,7 +38,7 @@ class AgendaView:
         self.caja_mensajes = tk.Label(self.ventana, text="", font=("Arial", 12), fg="#B10000",bg="#ABB7C2")
         self.texto_nombre = tk.Label(self.ventana, text="Nombre :", font=("Arial", 12), fg="black", bg="#ABB7C2")
         self.texto_telefono = tk.Label(self.ventana, text="Teléfono :", font=("Arial", 12), fg="black", bg="#ABB7C2")
-        self.texto_gmail = tk.Label(self.ventana, text="Correo :", font=("Arial", 12), fg="black", bg="#ABB7C2")
+        self.texto_correo = tk.Label(self.ventana, text="Correo :", font=("Arial", 12), fg="black", bg="#ABB7C2")
         self.texto_tbuscar = tk.Label(self.ventana, text="Buscar Contacto :", font=("Arial", 12), fg="black", bg="#ABB7C2")
         self.texto_tagregar = tk.Label(self.ventana, text="Agregar Contacto :", font=("Arial", 12), fg="black", bg="#ABB7C2")
         self.texto_lista = tk.Label(self.ventana, text="Lista de Contactos :", font=("Arial", 12), fg="black", bg="#ABB7C2")
@@ -54,8 +54,8 @@ class AgendaView:
         self.caja_nombre.place(relx=0.60, rely=0.30, relwidth=0.33, relheight=0.07)
         self.texto_telefono.place(relx=0.50, rely=0.42)
         self.caja_telefono.place(relx=0.60, rely=0.40, relwidth=0.33, relheight=0.07)
-        self.texto_gmail.place(relx=0.50, rely=0.52)
-        self.caja_gmail.place(relx=0.60, rely=0.50, relwidth=0.33, relheight=0.07)
+        self.texto_correo.place(relx=0.50, rely=0.52)
+        self.caja_correo.place(relx=0.60, rely=0.50, relwidth=0.33, relheight=0.07)
         self.boton_agregar.place(relx=0.70, rely=0.62, relwidth=0.10, relheight=0.07)
         self.boton_eliminar.place(relx=0.20, rely=0.80, relwidth=0.09, relheight=0.07)
         self.boton_guardar.place(relx=0.10, rely=0.80, relwidth=0.09, relheight=0.07)
