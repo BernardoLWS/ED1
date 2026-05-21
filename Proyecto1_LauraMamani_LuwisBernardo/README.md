@@ -100,9 +100,5 @@ El archivo de persistencia `contactos.json` sigue este formato:
 
 ---
 
-## Autores
 
-| Nombre          | Rol         |
-|-----------------|-------------|
-| Laura Mamani    | Desarrolladora |
-| Luwis Bernardo  | Desarrollador  |
+
