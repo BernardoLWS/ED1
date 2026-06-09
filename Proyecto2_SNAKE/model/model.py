@@ -34,8 +34,13 @@ class SnakeModel:
         if self.new_head in self.snake[1:]:
             return True
         return False
-
+    
     def spawn_apple(self):
         apple_x = random.randint(0, (self.width // self.cell_size) - 1) * self.cell_size
         apple_y = random.randint(0, (self.height // self.cell_size) - 1) * self.cell_size
         self.apple = (apple_x, apple_y)
+
+    def score(self,c=0):
+        if self.snake[0] == self.apple:
+            c += 1
+        return c   

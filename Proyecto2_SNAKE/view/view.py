@@ -1,5 +1,5 @@
 import pygame
-
+import time
 class SnakeView:
     def __init__(self):
         pygame.init()   # inicializa pygame
@@ -10,7 +10,8 @@ class SnakeView:
         self.BLACK = (0,0,0)    # color(rojo, verde, azul)
         self.GREEN = (0,255,0)  # limite de color 8 bits
         self.clock = pygame.time.Clock()    # inicializa el tiempo de ejecucion  
-
+        self.score = 0 
+        self.start_time = pygame.time.get_ticks()
 
     def draw(self, snake , apple):
         self.screen.fill(self.BLACK)    # limpia la pantalla y con color negro
@@ -29,5 +30,12 @@ class SnakeView:
         pygame.time.wait(2000)  # espera 2 segundos
         pygame.quit()
 
+    def show_info(self,score):
+        game_time = int(time.time()-self.start_time)
+        font = pygame.font.SysFont("Arial", 20)
+        text = font.render(f"Tiempo: {game_time:03d}  Score: {score:03d}", True, (255, 255, 0))
+        self.screen.blit(text,(10,10))
+        pygame.display.flip()
+      
     def tick(self, fps=10):
         self.clock.tick(fps)    # velocidad establicada de el snake
