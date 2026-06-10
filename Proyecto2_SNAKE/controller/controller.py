@@ -7,7 +7,6 @@ class SnakeController:
         self.running = True
 
     def handle_events(self):
-    
         for event in pygame.event.get():    # devuelve los eventos 
             if event.type == pygame.QUIT:   # pregunta si el evento x fue presionado
                 self.running = False        # si es asi deja de correr
@@ -27,18 +26,15 @@ class SnakeController:
 
     def run(self):
         while self.running:
-            self.view.show_info(self.model.score())
+            
             self.handle_events()  # manejar eventos
             # mover primero
             if not self.model.move():   # si move devuelve False -> colisión
                 self.running = False
             else:
-
                 # dibujar después de mover
-                self.view.draw(self.model.snake, self.model.apple)
-           
+                self.view.draw(self.model.snake, self.model.apple,self.model.score)
             self.view.tick()  # velocidad del juego
-            
         self.view.game_over()    
    
    
