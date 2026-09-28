@@ -19,6 +19,8 @@ class SnakeView:
         self.GRID_COLOR = (30, 30, 80)
         self.SNAKE_COLOR = (102, 255, 102)
         self.SNAKE_BORDER = (0, 120, 0)
+        self.ENEMY_COLOR = (220, 100, 100)
+        self.ENEMY_BORDER = (140, 40, 40)
         self.APPLE_COLOR = (255, 80, 80)
         self.INFO_BG = (10, 10, 30)
         self.INFO_TEXT = (240, 240, 180)
@@ -34,11 +36,13 @@ class SnakeView:
         self.font_small = pygame.font.SysFont("Arial", 18)
         self.font_large = pygame.font.SysFont("Arial", 42)
 
-    def draw(self, snake, apple, score):
-        """Dibuja la serpiente, la manzana y la información de juego en pantalla."""
+    def draw(self, snake, apple, score, enemy_snake=None):
+        """Dibuja la serpiente, la serpiente enemiga, la manzana y la información de juego."""
         self.draw_background()
         self.draw_border()
         self.draw_snake(snake)
+        if enemy_snake is not None:
+            self.draw_enemy(enemy_snake)
         self.draw_apple(apple)
         self.show_info(score)
         pygame.display.flip() # actualiza la pantalla con todo lo dibujado
@@ -72,6 +76,14 @@ class SnakeView:
         highlight = apple_rect.inflate(-8, -8)
         pygame.draw.rect(self.screen, (255, 160, 160), highlight, border_radius=4)
 
+    def draw_enemy(self, enemy_snake):
+        """Dibuja la serpiente enemiga con colores diferenciados."""
+        for segment in enemy_snake:
+            segment_rect = pygame.Rect(segment[0], segment[1], self.cell_size, self.cell_size)
+            pygame.draw.rect(self.screen, self.ENEMY_BORDER, segment_rect)
+            inner_rect = segment_rect.inflate(-4, -4)
+            pygame.draw.rect(self.screen, self.ENEMY_COLOR, inner_rect)
+
     def game_over(self):
         """Muestra el mensaje de fin de juego durante unos segundos."""
         overlay = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -82,9 +94,6 @@ class SnakeView:
         text_rect = text.get_rect(center=(self.width // 2, self.height // 2 - 20))
         self.screen.blit(text, text_rect)
 
-        subtext = self.font_small.render("Gracias por jugar. Cierra la ventana para salir.", True, self.INFO_TEXT)
-        subtext_rect = subtext.get_rect(center=(self.width // 2, self.height // 2 + 30))
-        self.screen.blit(subtext, subtext_rect)
 
         pygame.display.flip()
         pygame.time.wait(2000)
